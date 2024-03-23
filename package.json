@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "ws": "^8.16.0"
   }
 }

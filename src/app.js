@@ -13,12 +13,6 @@ app.use(cors())
 app.use('/api', mainRouter)
 
 app.get('/', (req, res, next) => {
-  const msg = req.query.msg
-  wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(msg)
-    }
-  })
   res.send('CarWatch')
 })
 

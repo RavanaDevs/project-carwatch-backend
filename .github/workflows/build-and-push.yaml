@@ -16,18 +16,14 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v1
 
-      - name: Build and push Docker image
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-        run: |
-          docker build \
-          --build-arg A_PORT=${{ vars.PORT }}\
-          --build-arg A_MONGODB_CONN_STRING="mongodb+srv://ravanadevs:rJ0VENGPo6w9TJiV@cluster0.o9qrp6n.mongodb.net/carwatch-db?retryWrites=true&w=majority"\
-          -t kavindusanjula/carwatch-backend .
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker push kavindusanjula/carwatch-backend
+      - name: Build Docker image
+        run: docker build --build-arg A_PORT=${{ vars.PORT }} --build-arg A_MONGODB_CONN_STRING=${{vars.MONGODB_CONN_STRING}} -t kavindusanjula/carwatch-backend .
+
+      - name: Push Docker image
+        run: docker push kavindusanjula/carwatch-backend
 
   update_server:
     name: Telling Server to Update

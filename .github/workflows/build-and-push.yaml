@@ -20,7 +20,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build --build-arg A_PORT=${{ vars.PORT }} --build-arg A_MONGODB_CONN_STRING=${{vars.MONGODB_CONN_STRING}} -t kavindusanjula/carwatch-backend .
+        run: docker build --build-arg A_PORT=${{ vars.PORT }} --build-arg A_MONGODB_CONN_STRING=`${{vars.MONGODB_CONN_STRING}}` -t kavindusanjula/carwatch-backend .
 
       - name: Push Docker image
         run: docker push kavindusanjula/carwatch-backend

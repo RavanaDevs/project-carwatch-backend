@@ -26,7 +26,6 @@ jobs:
           --build-arg A_PORT=${{ vars.PORT }}\
           --build-arg A_MONGODB_CONN_STRING=${{ vars.MONGODB_CONN_STRING }}\
           -t kavindusanjula/carwatch-backend .
-
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push kavindusanjula/carwatch-backend
 

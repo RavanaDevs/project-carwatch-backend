@@ -1,0 +1,1 @@
+docker build --build-arg A_PORT=5000 --build-arg A_MONGODB_CONN_STRING="mongodb+srv://ravanadevs:rJ0VENGPo6w9TJiV@cluster0.o9qrp6n.mongodb.net/carwatch-db?retryWrites=true&w=majority" -t kavindusanjula/carwatch-backend .

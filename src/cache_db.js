@@ -12,7 +12,7 @@ export const setValue = async (key, value) => {
     await client.connect()
   }
   await client.lPush(key, JSON.stringify(value))
-  await client.expire(key, 20)
+  await client.expire(key, 60)
 }
 
 export const getValue = async (key) => {

@@ -24,12 +24,21 @@ const decodeTP = (bytes) => {
 
 //Engine coolant temperature
 const decodeECT = (bytes) => {
-  const A = Number(bytes[2])
+  const A = parseInt(bytes[2])
   //   const A = Number('0x' + bytes[2])
   const temp = A - 40
   console.log('Engine coolant temperature: ', temp)
 
   return { ect: temp }
+}
+
+//Vehicle speed
+const decodeVSPD = (bytes) => {
+  const A = Number(bytes[2])
+  const spd = A
+  console.log('Speed: ', spd)
+
+  return { spd: spd }
 }
 
 export const decode = (data) => {
@@ -48,6 +57,8 @@ export const decode = (data) => {
       return decodeTP(bytes)
     case '0105':
       return decodeECT(bytes)
+    case '010d':
+      return decodeVSPD(bytes)
     default:
       console.log('no match')
       break

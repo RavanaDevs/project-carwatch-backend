@@ -3,7 +3,7 @@ import { decode } from './decoder.js'
 import { io } from './websocket.js'
 
 export const backendMsgController = (msg) => {
-  // console.log(msg)
+  console.log(msg)
   const data = decode(msg['data'])
   if(!data) return
   Object.entries(data).forEach(([key, value]) => {

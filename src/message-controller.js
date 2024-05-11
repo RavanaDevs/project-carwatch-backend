@@ -6,15 +6,16 @@ export const backendMsgController = (msg) => {
   if (!msg) return
 
   if (msg.data) {
-    // console.log(msg.data)
-    const data = decode(msg['data'])
+    console.log(msg.data)
+    const data = decode(msg.data)
+    if(!data) return
     Object.entries(data).forEach(([key, value]) => {
       frontendMsgController(key, value)
     })
   }
 
   if (msg.gps) {
-    console.log(msg.gps)
+    // console.log(msg.gps)
     const coords = msg.gps.split(',')
     frontendMsgController('gps',coords)
   }

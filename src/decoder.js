@@ -1,14 +1,14 @@
-const input1 = '010c\r41 0C 00 00 \r\r'
-const input2 = '0111\r41 11 29 \r\r'
-const input3 = '0105\r41 05 68 \r\r'
-const input4 = '010c\rNO DATA\r\r'
+import Rpm from './models/Rpm'
 
 //RPM
-const decodeRPM = (bytes) => {
+const decodeRPM = async (bytes) => {
   const A = Number('0x' + bytes[2])
   const B = Number('0x' + bytes[3])
   const rpm = (256 * A + B) / 4
   // console.log('RPM: ', rpm)
+
+  // const record = new Rpm({ rpm: rpm })
+  // await record.save()
 
   return { rpm: rpm }
 }
@@ -93,8 +93,3 @@ export const decode = (data) => {
       break
   }
 }
-
-// decode(input1)
-// decode(input2)
-// decode(input3)
-// decode(input4)

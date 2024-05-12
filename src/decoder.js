@@ -1,4 +1,4 @@
-import Rpm from './models/Rpm'
+import Rpm from './models/Rpm.js'
 
 //RPM
 const decodeRPM = async (bytes) => {

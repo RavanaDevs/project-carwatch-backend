@@ -19,6 +19,10 @@ export const backendMsgController = (msg) => {
     const coords = msg.gps.split(',')
     frontendMsgController('gps',coords)
   }
+
+  if(msg.hzd){
+    frontendMsgController('hzd',msg.hzd)
+  }
   // if (msg.data) {
   //   const data = decode(msg['data'])
   //   Object.entries(data).forEach(([key, value]) => {

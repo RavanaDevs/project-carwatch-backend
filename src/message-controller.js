@@ -16,6 +16,7 @@ export const backendMsgController = (msg) => {
   if (msg.gps) {
     const coords = msg.gps.split(',')
     frontendMsgController('gps',coords)
+    console.log(coords)
   }
 
   if(msg.hzd){

@@ -7,8 +7,8 @@ const decodeRPM = async (bytes) => {
   const rpm = (256 * A + B) / 4
   // console.log('RPM: ', rpm)
 
-  // const record = new Rpm({ rpm: rpm })
-  // await record.save()
+  const record = new Rpm({ rpm: rpm })
+  await record.save()
 
   return { rpm: rpm }
 }

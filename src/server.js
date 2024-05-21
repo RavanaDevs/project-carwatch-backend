@@ -11,7 +11,7 @@ const PORT = process.env.PORT
 mongoose.connect(CONN_STR).then(() => {
   console.log('Database Connected')
   server.listen(PORT, () => {
-    testLoop()
+    // testLoop()
     console.log('server is listning on port', PORT)
   })
 })

@@ -63,44 +63,54 @@ const throttlePosition = [
   17.843, 17.721, 17.599,
 ]
 
-
-
 export const testLoop = () => {
   let rpm = rpmData
   let speed = speedData
   let throttle = throttlePosition
-  let temp = [32,33,35,35,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,37,37,37,37,37,37,37,37,36,36,36,36,36,36,36,32,32]
+  let temp = [
+    32, 33, 35, 35, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
+    37, 37, 37, 37, 37, 37, 37, 37, 36, 36, 36, 36, 36, 36, 36, 32, 32,
+  ]
+  const load = [15.83,16.45,17.12,18.36,19.04,19.89,20.72,21.35,22.18,23.23]
+
+  frontendMsgController(
+    'fuelStatus',
+    'Closed loop, using oxygen sensor feedback to determine fuel mix'
+  )
 
   const rpmLoop = () => {
     let val = rpm.pop()
-    // console.log("RPM",val)
     frontendMsgController('rpm', val)
     rpm = [val, ...rpm]
   }
 
   const speedLoop = () => {
     let val = speed.pop()
-    // console.log("Speed",val)
     frontendMsgController('spd', val)
     speed = [val, ...speed]
   }
 
   const throttleLoop = () => {
     let val = throttle.pop()
-    // console.log("Speed",val)
     frontendMsgController('tp', val)
     throttle = [val, ...throttle]
   }
 
   const tempLoop = () => {
     let val = temp.pop()
-    // console.log("Speed",val)
-    frontendMsgController('temp', val)
+    frontendMsgController('etc', val)
     temp = [val, ...temp]
+  }
+
+  const loadLoop = () => {
+    let val = load.pop()
+    frontendMsgController('engineLoad', val)
+    load = [val, ...load]
   }
 
   setInterval(rpmLoop, 1000)
   setInterval(speedLoop, 1000)
   setInterval(throttleLoop, 1000)
   setInterval(tempLoop, 10000)
+  setInterval(loadLoop, 10000)
 }

@@ -71,12 +71,9 @@ export const testLoop = () => {
     32, 33, 35, 35, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
     37, 37, 37, 37, 37, 37, 37, 37, 36, 36, 36, 36, 36, 36, 36, 32, 32,
   ]
-  let load = [15.83,16.45,17.12,18.36,19.04,19.89,20.72,21.35,22.18,23.23]
-
-  frontendMsgController(
-    'fuelStatus',
-    'Closed loop, using oxygen sensor feedback to determine fuel mix'
-  )
+  let load = [
+    15.83, 16.45, 17.12, 18.36, 19.04, 19.89, 20.72, 21.35, 22.18, 23.23,
+  ]
 
   const rpmLoop = () => {
     let val = rpm.pop()
@@ -98,13 +95,17 @@ export const testLoop = () => {
 
   const tempLoop = () => {
     let val = temp.pop()
-    frontendMsgController('etc', val)
+    frontendMsgController('ect', val)
     temp = [val, ...temp]
   }
 
   const loadLoop = () => {
     let val = load.pop()
     frontendMsgController('engineLoad', val)
+    frontendMsgController(
+      'fuelStatus',
+      'Closed loop, using oxygen sensor feedback to determine fuel mix'
+    )
     load = [val, ...load]
   }
 

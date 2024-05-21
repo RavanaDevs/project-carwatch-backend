@@ -49,9 +49,27 @@ const speedData = [
   23, 22, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
 ]
 
+const throttlePosition = [
+  16.73, 16.758, 16.744, 16.772, 16.801, 16.845, 16.934, 16.989, 17.017, 17.072,
+  17.127, 17.181, 17.292, 17.388, 17.483, 17.568, 17.679, 17.79, 17.886, 17.981,
+  18.092, 18.214, 18.336, 18.458, 18.58, 18.717, 18.855, 18.993, 19.147, 19.269,
+  19.432, 19.595, 19.758, 19.944, 20.153, 20.362, 20.571, 20.779, 21.002,
+  21.226, 21.462, 21.721, 21.93, 22.188, 22.446, 22.704, 22.962, 23.221, 23.479,
+  23.75, 24.02, 24.29, 24.56, 25.014, 25.7, 25.014, 25.026, 25.014, 25.267,
+  25.014, 25.014, 25.7, 25.014, 24.76, 24.706, 24.453, 24.174, 23.914, 23.661,
+  23.408, 23.17, 22.917, 22.664, 22.426, 22.24, 21.927, 21.674, 21.579, 21.416,
+  21.179, 20.942, 20.705, 20.468, 20.231, 20.02, 19.809, 19.598, 19.729, 19.436,
+  19.27, 19.108, 18.945, 18.783, 18.652, 18.51, 18.368, 18.236, 18.105, 17.974,
+  17.843, 17.721, 17.599,
+]
+
+
+
 export const testLoop = () => {
   let rpm = rpmData
   let speed = speedData
+  let throttle = throttlePosition
+  let temp = [32,33,35,35,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,37,37,37,37,37,37,37,37,36,36,36,36,36,36,36,32,32]
 
   const rpmLoop = () => {
     let val = rpm.pop()
@@ -63,10 +81,26 @@ export const testLoop = () => {
   const speedLoop = () => {
     let val = speed.pop()
     // console.log("Speed",val)
-    frontendMsgController('spd',val)
+    frontendMsgController('spd', val)
     speed = [val, ...speed]
+  }
+
+  const throttleLoop = () => {
+    let val = throttle.pop()
+    // console.log("Speed",val)
+    frontendMsgController('tp', val)
+    throttle = [val, ...throttle]
+  }
+
+  const tempLoop = () => {
+    let val = temp.pop()
+    // console.log("Speed",val)
+    frontendMsgController('temp', val)
+    temp = [val, ...temp]
   }
 
   setInterval(rpmLoop, 1000)
   setInterval(speedLoop, 1000)
+  setInterval(throttleLoop, 1000)
+  setInterval(tempLoop, 10000)
 }
